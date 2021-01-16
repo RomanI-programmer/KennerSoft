@@ -1,7 +1,10 @@
 <?php
 
-namespace KennerSoft\src;
+namespace KennerSoft\Factory;
 
+
+use KennerSoft\Model\Robot1;
+use KennerSoft\Model\Robot2;
 
 class FactoryRobot
 {

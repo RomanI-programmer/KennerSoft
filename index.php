@@ -1,10 +1,8 @@
 <?php
 
-use KennerSoft\src\FactoryRobot;
+use KennerSoft\Factory\FactoryRobot;
 
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
-});
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'autoloader.php';
 
 $factory = new FactoryRobot();
 echo '<pre>';
