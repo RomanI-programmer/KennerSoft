@@ -2,24 +2,41 @@
 
 namespace KennerSoft\Factory;
 
-
+use KennerSoft\Merge\AbstractMerge;
+use KennerSoft\Model\AbstractRobot;
 use KennerSoft\Model\Robot1;
 use KennerSoft\Model\Robot2;
 
 class FactoryRobot
 {
 
-    public $array_robots = [];
-    public $robot_1;
-    public $robot_2;
+    /**
+     * @var AbstractRobot
+     */
+    public AbstractRobot $robot1;
+    /**
+     * @var AbstractRobot
+     */
+    public AbstractRobot $robot2;
 
     /**
-     * FactoryRobot constructor.
+     * @param AbstractRobot $robot1
      */
-    public function __construct()
+    public function setRobot1(AbstractRobot $robot1): self
     {
-        $this->robot_1 = new Robot1();
-        $this->robot_2 = new Robot2();
+        $this->robot1 = $robot1;
+
+        return $this;
+    }
+
+    /**
+     * @param AbstractRobot $robot2
+     */
+    public function setRobot2(AbstractRobot $robot2): self
+    {
+        $this->robot2 = $robot2;
+
+        return $this;
     }
 
     /**
@@ -27,19 +44,17 @@ class FactoryRobot
      * Метод з модифікатором private, оскільки він використовується лише всередині поточного класу,
      * заборонено використовувати при створенні об"єкту
      * @param $count
-     * @param $type_robot
+     * @param $typeRobot
      * @return array
      */
-    private function AddNewRobots($count,$type_robot)
+    private function createRobots($count, $typeRobot)
     {
-        // Очищаю попередні дані
-        $this->clearData();
-
-        for($i = 0; $i < $count; $i++) {
-            $this->array_robots[$i] = $type_robot;
+        $arrayRobots = [];
+        for ($i = 0; $i < $count; $i++) {
+            $arrayRobots[$i] = $typeRobot;
         }
 
-        return $this->array_robots;
+        return $arrayRobots;
     }
 
     /**
@@ -48,7 +63,7 @@ class FactoryRobot
      */
     public function createRobot1($count)
     {
-        return $this->AddNewRobots($count,$this->robot_1);
+        return $this->createRobots($count, $this->robot1);
     }
 
     /**
@@ -57,12 +72,12 @@ class FactoryRobot
      */
     public function createRobot2($count)
     {
-        return $this->AddNewRobots($count,$this->robot_2);
+        return $this->createRobots($count, $this->robot2);
     }
 
-    public function clearData()
+
+    public function createMergeRobot(AbstractMerge $merge)
     {
-        $this->array_robots = [];
+        return $merge->mergeRobots();
     }
-
 }
