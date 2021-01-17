@@ -20,13 +20,13 @@ echo '<pre>';
 print_r($factory->createRobot2(2));
 echo '</pre>';
 
-$merage = new MergeRoot();
-$merage
+$merge = new MergeRoot();
+$merge
     ->addRobot(new Robot2())
     ->addRobots($factory->createRobot2(2));
 
 echo "MERGE:" . "<br>";
-$response = $factory->createMergeRobot($merage);
+$response = $factory->createMergeRobot($merge);
 echo "Speed: " . $response->getSpeed() . "<br>";
 echo "Weight: " . $response->getWeight() . "<br>";
 

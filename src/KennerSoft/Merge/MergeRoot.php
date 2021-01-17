@@ -10,7 +10,8 @@ class MergeRoot extends AbstractMerge
 
     public function mergeRobots()
     {
-        $robot_merge = new Robot2();
+        $class_name  = get_class($this->robots[0]);
+        $robot_merge = new $class_name;
         foreach ($this->robots as $robot) {
             if($robot_merge->getSpeed() < $robot->getSpeed()){
                 $robot_merge->setSpeed($robot->getSpeed());
