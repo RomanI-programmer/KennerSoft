@@ -28,7 +28,7 @@ abstract class AbstractMerge
      * @param AbstractRobot $robot
      * @return $this
      */
-    public function addRobot(AbstractRobot $robot)
+    public function addRobot(AbstractRobot $robot) : self
     {
         if ($this->checkRobotType($robot)) {
             $this->robots[] = $robot;
@@ -41,7 +41,7 @@ abstract class AbstractMerge
      * @param array $robots
      * @return $this
      */
-    public function addRobots(array $robots)
+    public function addRobots(array $robots) : self
     {
         $this->robots = [];
 
@@ -56,7 +56,7 @@ abstract class AbstractMerge
      * @param AbstractRobot $robot
      * @return bool
      */
-    protected function checkRobotType(AbstractRobot $robot)
+    protected function checkRobotType(AbstractRobot $robot) : bool
     {
         foreach ($this->robots as $r) {
             if (get_class($r) !== get_class($robot)) {
@@ -67,6 +67,9 @@ abstract class AbstractMerge
         return true;
     }
 
+    /**
+     * @return mixed
+     */
     abstract public function mergeRobots();
 
 }

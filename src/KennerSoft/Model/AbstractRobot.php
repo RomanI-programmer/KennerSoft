@@ -90,5 +90,4 @@ abstract class AbstractRobot
         return $this;
     }
 
-
 }

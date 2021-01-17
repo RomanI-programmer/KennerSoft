@@ -4,9 +4,11 @@ namespace KennerSoft\Factory;
 
 use KennerSoft\Merge\AbstractMerge;
 use KennerSoft\Model\AbstractRobot;
-use KennerSoft\Model\Robot1;
-use KennerSoft\Model\Robot2;
 
+/**
+ * Class FactoryRobot
+ * @package KennerSoft\Factory
+ */
 class FactoryRobot
 {
 
@@ -47,7 +49,7 @@ class FactoryRobot
      * @param $typeRobot
      * @return array
      */
-    private function createRobots($count, $typeRobot)
+    private function createRobots(int $count, $typeRobot) : array
     {
         $arrayRobots = [];
         for ($i = 0; $i < $count; $i++) {
@@ -61,7 +63,7 @@ class FactoryRobot
      * @param int $count
      * @return array
      */
-    public function createRobot1($count)
+    public function createRobot1(int $count) : array
     {
         return $this->createRobots($count, $this->robot1);
     }
@@ -70,13 +72,16 @@ class FactoryRobot
      * @param $count
      * @return array
      */
-    public function createRobot2($count)
+    public function createRobot2(int $count) : array
     {
         return $this->createRobots($count, $this->robot2);
     }
 
-
-    public function createMergeRobot(AbstractMerge $merge)
+    /**
+     * @param AbstractMerge $merge
+     * @return mixed
+     */
+    public function createMergeRobot(AbstractMerge $merge) : AbstractMerge
     {
         return $merge->mergeRobots();
     }

@@ -3,23 +3,32 @@
 namespace KennerSoft\Merge;
 
 use KennerSoft\Model\AbstractRobot;
-use KennerSoft\Model\Robot2;
 
+/**
+ * Class MergeRoot
+ * @package KennerSoft\Merge
+ */
 class MergeRoot extends AbstractMerge
 {
 
-    public function mergeRobots()
+    /**
+     * @return AbstractRobot|null
+     */
+    public function mergeRobots() : ?AbstractRobot
     {
-        $class_name  = get_class($this->robots[0]);
-        $robot_merge = new $class_name;
-        foreach ($this->robots as $robot) {
-            if($robot_merge->getSpeed() < $robot->getSpeed()){
-                $robot_merge->setSpeed($robot->getSpeed());
+        if(!empty($this->robots)){
+            $class_name  = get_class(reset($this->robots));
+            $robot_merge = new $class_name;
+            foreach ($this->robots as $robot) {
+                if($robot_merge->getSpeed() > $robot->getSpeed()){
+                    $robot_merge->setSpeed($robot->getSpeed());
+                }
+                $robot_merge->setWeight($robot_merge->getWeight() + $robot->getWeight());
             }
-            $robot_merge->setWeight($robot_merge->getWeight() + $robot->getWeight());
+
+            return $robot_merge;
         }
 
-        return $robot_merge;
+        return null;
     }
-
 }
