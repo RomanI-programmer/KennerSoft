@@ -31,8 +31,3 @@ if($response){
     echo "Speed: " . $response->getSpeed() . "<br>";
     echo "Weight: " . $response->getWeight() . "<br>";
 }
-?>
-
-
-
-
